@@ -15,6 +15,7 @@ class RTC1307
     void start(void);
     void stop(void);
     void get(int *sec, int *min, int *hour, int *day, int *month, int *year);
+    String dateTimeFile();
     String dateYYYMMDD();
     String date();
     String time();
