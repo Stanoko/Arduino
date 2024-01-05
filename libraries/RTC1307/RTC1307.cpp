@@ -110,6 +110,25 @@ void RTC1307::get(int *sec, int *min, int *hour, int *day, int *month, int *year
   return;
 }
 
+String RTC1307::dateTimeFile()
+{
+  int sec, min, hour,day,month,year;
+  Wire.beginTransmission(I2C_ADDR);
+  Wire.write(byte(0x00));
+  Wire.endTransmission();
+
+  Wire.requestFrom(I2C_ADDR, 7);
+  sec   = bcd2bin(Wire.read() & 0x7F);
+  min   = bcd2bin(Wire.read());
+  hour  = bcd2bin(Wire.read());
+           bcd2bin(Wire.read()); //day of week
+  day   = bcd2bin(Wire.read());
+  month = bcd2bin(Wire.read());
+  year  = bcd2bin(Wire.read()) + 2000;
+
+  return LeftPadZero(String(year,DEC),4)+LeftPadZero(String(month,DEC),2)+LeftPadZero(String(day,DEC),2)+"_"+LeftPadZero(String(hour,DEC),2)+LeftPadZero(String(min,DEC),2)+LeftPadZero(String(sec,DEC),2);
+
+}
 
 String RTC1307::dateYYYMMDD()
 {
