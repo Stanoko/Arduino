@@ -1,0 +1,14 @@
+{
+  "name": "SDHelper",
+  "version": "1.0.0",
+  "keywords": "sd card, m5stack",
+  "description": "SDHelper - functions for SD Card on M5Stack",
+  "include": "SDHelper",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/Stanoko/Arduino/tree/main/libraries/SDHelper"
+  },
+  "frameworks": "arduino",
+  "platforms": "atmelavr"
+}
