@@ -47,10 +47,10 @@ bool RTC1307::isRunning()
 {
   uint8_t data;
 	bool flag;
-	Wire.beginTransmission(DS1307_ADDR);
+	Wire.beginTransmission(I2C_ADDR);
 	Wire.write(0x00);
 	Wire.endTransmission();
-	Wire.requestFrom(DS1307_ADDR, 1);
+	Wire.requestFrom(I2C_ADDR, 1);
 	data = Wire.read();
 	flag = bitRead(data, 7);
 	return (!flag);
