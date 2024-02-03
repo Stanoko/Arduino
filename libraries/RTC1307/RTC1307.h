@@ -12,6 +12,7 @@ class RTC1307
 
     void begin(void);
     bool isRtc();
+    bool isRunning();
     void start(void);
     void stop(void);
     void get(int *sec, int *min, int *hour, int *day, int *month, int *year);
