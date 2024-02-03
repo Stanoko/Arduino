@@ -36,13 +36,24 @@ void RTC1307::begin(void)
   Wire.begin(); //init I2C lib
 }
 
-
 bool RTC1307::isRtc()
 {
-  byte error;
-  Wire.beginTransmission(I2C_ADDR);
-  error = Wire.endTransmission();
-  return error==0;
+  Wire.begin(); //init I2C lib
+	Wire.beginTransmission(I2C_ADDR);
+	return (Wire.endTransmission() == 0 ? true : false);
+}
+
+bool RTC1307::isRunning()
+{
+  uint8_t data;
+	bool flag;
+	Wire.beginTransmission(DS1307_ADDR);
+	Wire.write(0x00);
+	Wire.endTransmission();
+	Wire.requestFrom(DS1307_ADDR, 1);
+	data = Wire.read();
+	flag = bitRead(data, 7);
+	return (!flag);
 }
 
 
